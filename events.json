@@ -1,0 +1,80 @@
+{
+  "events": [
+    {
+      "id": "event-001",
+      "title": "Raga Yaman Evening",
+      "artist": "Pt. Rajesh Kumar (Sitar) & Ustad Ahmed Khan (Tabla)",
+      "date": "2025-12-15",
+      "time": "7:00 PM",
+      "venue": "HSR Layout, Bangalore",
+      "description": "An enchanting evening featuring the soul-stirring melodies of Raga Yaman, performed by renowned sitarist Pt. Rajesh Kumar accompanied by the rhythmic brilliance of Ustad Ahmed Khan on tabla.",
+      "totalSeats": 50,
+      "bookedSeats": 12,
+      "ticketPrice": 800,
+      "upiId": "ayatbaithak@paytm",
+      "merchantName": "Ayat Baithak",
+      "status": "upcoming"
+    },
+    {
+      "id": "event-002",
+      "title": "Kathak & Classical Fusion",
+      "artist": "Smt. Priya Sharma (Kathak) with Live Music",
+      "date": "2026-01-20",
+      "time": "6:30 PM",
+      "venue": "Koramangala, Bangalore",
+      "description": "Experience the grace and precision of Kathak dance accompanied by live classical music. A mesmerizing evening of rhythm, movement, and melody.",
+      "totalSeats": 40,
+      "bookedSeats": 5,
+      "ticketPrice": 1000,
+      "upiId": "ayatbaithak@paytm",
+      "merchantName": "Ayat Baithak",
+      "status": "upcoming"
+    },
+    {
+      "id": "event-003",
+      "title": "Hindustani Classical Vocal Concert",
+      "artist": "Vidushi Ananya Desai",
+      "date": "2026-02-10",
+      "time": "7:30 PM",
+      "venue": "Indiranagar, Bangalore",
+      "description": "Join us for an intimate vocal concert featuring the sublime voice of Vidushi Ananya Desai, exploring the depths of Hindustani classical music through timeless ragas.",
+      "totalSeats": 35,
+      "bookedSeats": 0,
+      "ticketPrice": 750,
+      "upiId": "ayatbaithak@paytm",
+      "merchantName": "Ayat Baithak",
+      "status": "upcoming"
+    },
+    {
+      "id": "event-past-001",
+      "title": "Thumri & Dadra Night",
+      "artist": "Smt. Malini Awasthi",
+      "date": "2025-10-15",
+      "time": "7:00 PM",
+      "venue": "Jayanagar, Bangalore",
+      "description": "A memorable evening of semi-classical Thumri and Dadra compositions that touched the hearts of all attendees.",
+      "totalSeats": 45,
+      "bookedSeats": 45,
+      "ticketPrice": 700,
+      "upiId": "ayatbaithak@paytm",
+      "merchantName": "Ayat Baithak",
+      "status": "past"
+    },
+    {
+      "id": "event-past-002",
+      "title": "Sarod Maestro Live",
+      "artist": "Ustad Amjad Ali Khan Jr.",
+      "date": "2025-09-20",
+      "time": "8:00 PM",
+      "venue": "Whitefield, Bangalore",
+      "description": "An unforgettable evening with the sarod virtuoso, featuring classical ragas and improvisations that captivated the audience.",
+      "totalSeats": 60,
+      "bookedSeats": 60,
+      "ticketPrice": 1200,
+      "upiId": "ayatbaithak@paytm",
+      "merchantName": "Ayat Baithak",
+      "status": "past"
+    }
+  ]
+}
+
