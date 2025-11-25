@@ -10,48 +10,156 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <!-- Navigation -->
+    <nav class="navbar">
         <div class="container">
-            <div class="logo-container">
-                <img src="images.jpeg" alt="Ayat Logo" class="logo">
-                <div class="header-text">
-                    <h1>आयात | Ayat</h1>
-                    <p class="tagline">Indian Classical Baithak, Bangalore</p>
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <img src="images.jpeg" alt="Ayat Logo" class="nav-logo">
+                    <span class="nav-title">आयात | Ayat</span>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="baithaks.html" class="nav-link">Baithaks</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Carousel -->
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-slides">
+                <div class="carousel-slide active">
+                    <img src="photos/unnamed.jpg" alt="Baithak Session 1">
+                    <div class="carousel-overlay">
+                        <h1 class="carousel-title">Experience the Soul of Indian Classical Music</h1>
+                        <p class="carousel-subtitle">Join us for intimate evening sessions of timeless ragas and rhythms</p>
+                        <a href="baithaks.html" class="carousel-cta">View Upcoming Events</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="photos/unnamed (1).jpg" alt="Baithak Session 2">
+                    <div class="carousel-overlay">
+                        <h1 class="carousel-title">Traditional Baithak Setting</h1>
+                        <p class="carousel-subtitle">Immerse yourself in the authentic atmosphere of classical music</p>
+                        <a href="about.html" class="carousel-cta">Learn More</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="photos/unnamed (2).jpg" alt="Baithak Session 3">
+                    <div class="carousel-overlay">
+                        <h1 class="carousel-title">Intimate Musical Gatherings</h1>
+                        <p class="carousel-subtitle">Connect with fellow music enthusiasts in Bangalore</p>
+                        <a href="contact.html" class="carousel-cta">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="photos/unnamed (3).jpg" alt="Baithak Session 4">
+                    <div class="carousel-overlay">
+                        <h1 class="carousel-title">Celebrating Classical Heritage</h1>
+                        <p class="carousel-subtitle">Where tradition meets contemporary appreciation</p>
+                        <a href="baithaks.html" class="carousel-cta">Book Your Seat</a>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="photos/unnamed (4).jpg" alt="Baithak Session 5">
+                    <div class="carousel-overlay">
+                        <h1 class="carousel-title">Soulful Melodies</h1>
+                        <p class="carousel-subtitle">Experience the magic of live classical performances</p>
+                        <a href="baithaks.html" class="carousel-cta">Explore Events</a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev" aria-label="Previous slide">‹</button>
+            <button class="carousel-btn next" aria-label="Next slide">›</button>
+            <div class="carousel-indicators"></div>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="welcome-content">
+                <h2 class="section-heading">Welcome to Ayat</h2>
+                <div class="decorative-line"></div>
+                <p class="welcome-text">
+                    Ayat is more than just a music event—it's a journey into the heart of Indian classical music. 
+                    In the traditional baithak style, we bring together accomplished artists and passionate music lovers 
+                    in an intimate setting where every note resonates with authenticity and emotion.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>Authentic Baithak Experience</h3>
+                    <p>Traditional intimate setting that brings you closer to the music and the artist</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Renowned Artists</h3>
+                    <p>Experience performances by acclaimed classical musicians and emerging talents</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍽️</div>
+                    <h3>Curated Refreshments</h3>
+                    <p>Enjoy thoughtfully prepared refreshments that complement the evening</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community of Connoisseurs</h3>
+                    <p>Connect with fellow classical music enthusiasts and share your passion</p>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Gallery Preview Section -->
+    <section class="gallery-preview">
         <div class="container">
-            <div class="hero-content">
-                <h2>Experience the Soul of Indian Classical Music</h2>
-                <p>Join us for an intimate evening of timeless ragas and rhythms in the heart of Bangalore</p>
+            <h2 class="section-heading">Moments from Our Baithaks</h2>
+            <div class="decorative-line"></div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="photos/unnamed (5).jpg" alt="Baithak moment 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/unnamed (6).jpg" alt="Baithak moment 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/unnamed (7).jpg" alt="Baithak moment 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="photos/unnamed (8).jpg" alt="Baithak moment 4">
+                </div>
             </div>
         </div>
-        <div class="decorative-border"></div>
     </section>
 
-    <!-- Events Section -->
-    <section class="events-section">
+    <!-- CTA Section -->
+    <section class="cta-section">
         <div class="container">
-            <h2 class="section-title">Upcoming Events</h2>
-            <div id="upcomingEvents" class="events-grid"></div>
-
-            <h2 class="section-title">Past Events</h2>
-            <div id="pastEvents" class="events-grid"></div>
+            <div class="cta-content">
+                <h2>Ready to Experience the Magic?</h2>
+                <p>Join us for our next baithak and immerse yourself in the world of classical music</p>
+                <a href="baithaks.html" class="cta-button">View Upcoming Events</a>
+            </div>
         </div>
     </section>
-
-    <!-- Booking Modal -->
-    <div id="bookingModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div id="modalBody"></div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -62,13 +170,20 @@
                     <p>Ayat is a platform dedicated to celebrating Indian classical music through intimate baithak sessions in Bangalore.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p>Email: info@ayatbaithak.com</p>
-                    <p>Phone: +91 98765 43210</p>
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="baithaks.html">Baithaks</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <p>Stay updated with our upcoming events</p>
+                    <h3>Contact</h3>
+                    <p>Vishnupriya Srivastava</p>
+                    <p>Email: ayataaraindia@gmail.com</p>
+                    <p>Phone: +91-7019250861</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -80,4 +195,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

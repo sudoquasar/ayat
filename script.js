@@ -9,9 +9,160 @@ const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxya3_kUxJMTO
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
+    initCarousel();
+    initMobileNav();
+    initContactForm();
     await loadEvents();
     displayEvents();
 });
+
+// Carousel functionality
+function initCarousel() {
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (!carouselContainer) return; // Only run on home page
+    
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const indicatorsContainer = document.querySelector('.carousel-indicators');
+    
+    let currentSlide = 0;
+    let autoSlideInterval;
+    
+    // Create indicators
+    slides.forEach((_, index) => {
+        const indicator = document.createElement('div');
+        indicator.classList.add('carousel-indicator');
+        if (index === 0) indicator.classList.add('active');
+        indicator.addEventListener('click', () => goToSlide(index));
+        indicatorsContainer.appendChild(indicator);
+    });
+    
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    
+    function goToSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        indicators[currentSlide].classList.remove('active');
+        
+        currentSlide = (n + slides.length) % slides.length;
+        
+        slides[currentSlide].classList.add('active');
+        indicators[currentSlide].classList.add('active');
+    }
+    
+    function nextSlide() {
+        goToSlide(currentSlide + 1);
+    }
+    
+    function prevSlide() {
+        goToSlide(currentSlide - 1);
+    }
+    
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 5000);
+    }
+    
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+    
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        stopAutoSlide();
+        startAutoSlide();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        stopAutoSlide();
+        startAutoSlide();
+    });
+    
+    // Touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    carouselContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    carouselContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+    
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        }
+        if (touchEndX > touchStartX + 50) {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        }
+    }
+    
+    // Start auto-slide
+    startAutoSlide();
+    
+    // Pause on hover
+    carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+    carouselContainer.addEventListener('mouseleave', startAutoSlide);
+}
+
+// Mobile navigation
+function initMobileNav() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (!navToggle) return;
+    
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+}
+
+// Contact form handling
+function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('contactName').value,
+            email: document.getElementById('contactEmail').value,
+            phone: document.getElementById('contactPhone').value,
+            subject: document.getElementById('contactSubject').value,
+            message: document.getElementById('contactMessage').value,
+            timestamp: new Date().toISOString()
+        };
+        
+        console.log('Contact form submitted:', formData);
+        
+        // Show success message
+        contactForm.style.display = 'none';
+        document.getElementById('contactFormSuccess').style.display = 'block';
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+            contactForm.reset();
+            contactForm.style.display = 'block';
+            document.getElementById('contactFormSuccess').style.display = 'none';
+        }, 5000);
+    });
+}
 
 // Load events from JSON file
 async function loadEvents() {
@@ -43,6 +194,12 @@ function displayEvents() {
     const upcomingContainer = document.getElementById('upcomingEvents');
     const pastContainer = document.getElementById('pastEvents');
     
+    // Only run if we're on a page with event containers
+    if (!upcomingContainer || !pastContainer) {
+        console.log('Event containers not found on this page');
+        return;
+    }
+    
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
@@ -57,6 +214,10 @@ function displayEvents() {
         eventDate.setHours(0, 0, 0, 0);
         return eventDate < today;
     }).sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    console.log(`Loaded ${eventsData.length} events total`);
+    console.log(`Upcoming events: ${upcomingEvents.length}`);
+    console.log(`Past events: ${pastEvents.length}`);
     
     if (upcomingEvents.length === 0) {
         upcomingContainer.innerHTML = '<div class="empty-state">No upcoming events at the moment. Check back soon!</div>';
