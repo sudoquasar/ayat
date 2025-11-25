@@ -12,8 +12,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     initCarousel();
     initMobileNav();
     initContactForm();
-    await loadEvents();
-    displayEvents();
+    
+    // Only load and display events if we're on the baithaks page
+    const hasEventContainers = document.getElementById('upcomingEvents') || document.getElementById('pastEvents');
+    if (hasEventContainers) {
+        await loadEvents();
+        displayEvents();
+    }
 });
 
 // Carousel functionality
