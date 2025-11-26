@@ -331,8 +331,8 @@ function openBookingModal(eventId) {
     
     const amount = currentEvent.ticketPrice;
     
-    // Generate UPI payment link
-    const upiLink = generateUPILink(currentEvent, amount);
+    // QR code path
+    const qrCodePath = currentEvent.qrCodePath || 'qr/IMG_5870.jpg';
     
     modalBody.innerHTML = `
         <div class="modal-header">
@@ -343,10 +343,12 @@ function openBookingModal(eventId) {
             <div class="payment-section">
                 <h3>Step 1: Make Payment via UPI</h3>
                 <p><strong>Amount per ticket:</strong> ₹${currentEvent.ticketPrice}</p>
-                <p style="margin-top: 10px; font-size: 0.95rem;">Click the button below to pay via UPI. After completing payment, return here to fill the registration form.</p>
-                <a href="${upiLink}" class="upi-button">Pay ₹${amount} via UPI</a>
+                <div class="qr-code-container">
+                    <img src="${qrCodePath}" alt="UPI Payment QR Code" class="qr-code-image">
+                    <p class="qr-instructions">Scan this QR code with any UPI app to make payment</p>
+                </div>
                 <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">
-                    Note: Payment will open in your UPI app. Save the transaction ID shown after payment.
+                    Note: After scanning and completing payment, save the transaction ID shown in your UPI app.
                 </p>
             </div>
             

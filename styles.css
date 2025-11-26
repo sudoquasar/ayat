@@ -1020,6 +1020,34 @@ body {
     margin-bottom: 15px;
 }
 
+.qr-code-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.qr-code-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border: 3px solid var(--burgundy-dark);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(107, 31, 31, 0.2);
+}
+
+.qr-instructions {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: var(--burgundy-dark);
+    font-weight: 600;
+    text-align: center;
+}
+
 .upi-button {
     display: inline-block;
     padding: 15px 40px;
