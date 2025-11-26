@@ -74,6 +74,21 @@
       "status": "past",
       "bookingStatus": "closed",
       "availabilityMessage": "Event completed"
+    },
+    {
+      "id": "event-past-005",
+      "title": "Classical Vocal Evening with Hrithik Adlakha",
+      "artist": "Hrithik Adlakha (Vocals), Tejas Katoti (Harmonium), Sumit Naik (Tabla)",
+      "date": "2025-08-30",
+      "time": "6:30 PM",
+      "venue": "Krishvi Gavakshi, Kadubeeshanhalli",
+      "description": "An evening of sublime Hindustani classical vocals by Hrithik Adlakha, accompanied by Tejas Katoti on harmonium and Sumit Naik on tabla. A memorable performance that showcased the beauty of traditional ragas.",
+      "ticketPrice": 1700,
+      "upiId": "ayataaraindia@paytm",
+      "merchantName": "Ayat Baithak",
+      "status": "past",
+      "bookingStatus": "closed",
+      "availabilityMessage": "Event completed"
     }
   ]
 }
