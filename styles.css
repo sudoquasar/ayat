@@ -598,6 +598,19 @@ body {
     border-color: #999;
 }
 
+.book-button.booking-coming-soon {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: var(--cream);
+    border-color: #545b62;
+}
+
+.book-button.booking-closed,
+.book-button.booking-completed {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: var(--cream);
+    border-color: #bd2130;
+}
+
 /* About Page Styles */
 .about-content {
     padding: 60px 0;

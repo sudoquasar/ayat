@@ -8,12 +8,12 @@
       "time": "7:00 PM",
       "venue": "HSR Layout, Bangalore",
       "description": "An enchanting evening featuring the soul-stirring melodies of Raga Yaman, performed by renowned sitarist Pt. Rajesh Kumar accompanied by the rhythmic brilliance of Ustad Ahmed Khan on tabla.",
-      "totalSeats": 50,
-      "bookedSeats": 12,
       "ticketPrice": 800,
       "upiId": "ayatbaithak@paytm",
       "merchantName": "Ayat Baithak",
-      "status": "upcoming"
+      "status": "upcoming",
+      "bookingStatus": "open",
+      "availabilityMessage": "Very few seats available"
     },
     {
       "id": "event-002",
@@ -23,12 +23,12 @@
       "time": "6:30 PM",
       "venue": "Koramangala, Bangalore",
       "description": "Experience the grace and precision of Kathak dance accompanied by live classical music. A mesmerizing evening of rhythm, movement, and melody.",
-      "totalSeats": 40,
-      "bookedSeats": 5,
       "ticketPrice": 1000,
       "upiId": "ayatbaithak@paytm",
       "merchantName": "Ayat Baithak",
-      "status": "upcoming"
+      "status": "upcoming",
+      "bookingStatus": "coming_soon",
+      "availabilityMessage": "Booking opens soon"
     },
     {
       "id": "event-003",
@@ -38,12 +38,12 @@
       "time": "7:30 PM",
       "venue": "Indiranagar, Bangalore",
       "description": "Join us for an intimate vocal concert featuring the sublime voice of Vidushi Ananya Desai, exploring the depths of Hindustani classical music through timeless ragas.",
-      "totalSeats": 35,
-      "bookedSeats": 0,
       "ticketPrice": 750,
       "upiId": "ayatbaithak@paytm",
       "merchantName": "Ayat Baithak",
-      "status": "upcoming"
+      "status": "upcoming",
+      "bookingStatus": "open",
+      "availabilityMessage": "Very few seats available"
     },
     {
       "id": "event-past-001",
@@ -53,12 +53,12 @@
       "time": "7:00 PM",
       "venue": "Jayanagar, Bangalore",
       "description": "A memorable evening of semi-classical Thumri and Dadra compositions that touched the hearts of all attendees.",
-      "totalSeats": 45,
-      "bookedSeats": 45,
       "ticketPrice": 700,
       "upiId": "ayatbaithak@paytm",
       "merchantName": "Ayat Baithak",
-      "status": "past"
+      "status": "past",
+      "bookingStatus": "closed",
+      "availabilityMessage": "Event completed"
     },
     {
       "id": "event-past-002",
@@ -68,12 +68,12 @@
       "time": "8:00 PM",
       "venue": "Whitefield, Bangalore",
       "description": "An unforgettable evening with the sarod virtuoso, featuring classical ragas and improvisations that captivated the audience.",
-      "totalSeats": 60,
-      "bookedSeats": 60,
       "ticketPrice": 1200,
       "upiId": "ayatbaithak@paytm",
       "merchantName": "Ayat Baithak",
-      "status": "past"
+      "status": "past",
+      "bookingStatus": "closed",
+      "availabilityMessage": "Event completed"
     }
   ]
 }

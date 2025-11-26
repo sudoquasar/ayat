@@ -175,23 +175,10 @@ async function loadEvents() {
         const response = await fetch('events.json');
         const data = await response.json();
         eventsData = data.events;
-        
-        // Load bookings from localStorage and update seats
-        updateSeatsFromLocalStorage();
     } catch (error) {
         console.error('Error loading events:', error);
         showError('Unable to load events. Please refresh the page.');
     }
-}
-
-// Update booked seats from localStorage
-function updateSeatsFromLocalStorage() {
-    const bookings = getBookings();
-    eventsData.forEach(event => {
-        const eventBookings = bookings.filter(b => b.eventId === event.id);
-        const totalBookedSeats = eventBookings.reduce((sum, b) => sum + parseInt(b.tickets), 0);
-        event.bookedSeats = totalBookedSeats;
-    });
 }
 
 // Display events on the page
@@ -239,9 +226,47 @@ function displayEvents() {
 
 // Create event card HTML
 function createEventCard(event, isPast) {
-    const availableSeats = event.totalSeats - event.bookedSeats;
-    const isFull = availableSeats <= 0;
     const formattedDate = formatDate(event.date);
+    const bookingStatus = event.bookingStatus || 'open';
+    
+    // Determine button state and text based on bookingStatus
+    let buttonConfig = {
+        text: 'Book Your Seat',
+        disabled: false,
+        cssClass: ''
+    };
+    
+    switch(bookingStatus) {
+        case 'open':
+            buttonConfig = {
+                text: 'Book Your Seat',
+                disabled: false,
+                cssClass: 'booking-open'
+            };
+            break;
+        case 'closed':
+        case 'sold_out':
+            buttonConfig = {
+                text: 'Sold Out',
+                disabled: true,
+                cssClass: 'booking-closed'
+            };
+            break;
+        case 'coming_soon':
+            buttonConfig = {
+                text: 'Booking Opens Soon',
+                disabled: true,
+                cssClass: 'booking-coming-soon'
+            };
+            break;
+        case 'completed':
+            buttonConfig = {
+                text: 'Event Completed',
+                disabled: true,
+                cssClass: 'booking-completed'
+            };
+            break;
+    }
     
     return `
         <div class="event-card ${isPast ? 'past' : ''}">
@@ -267,20 +292,17 @@ function createEventCard(event, isPast) {
             </div>
             <p class="event-description">${event.description}</p>
             ${!isPast ? `
-                <div class="seats-info ${isFull ? 'full' : ''}">
+                <div class="seats-info ${bookingStatus === 'closed' || bookingStatus === 'sold_out' ? 'full' : ''}">
                     <div class="seats-available">
-                        ${isFull ? 
-                            '<span class="seats-full">SOLD OUT</span>' : 
-                            `<strong>${availableSeats}</strong> seats available out of ${event.totalSeats}`
-                        }
+                        ${event.availabilityMessage || 'Very few seats available'}
                     </div>
                 </div>
                 <button 
-                    class="book-button" 
+                    class="book-button ${buttonConfig.cssClass}" 
                     onclick="openBookingModal('${event.id}')"
-                    ${isFull ? 'disabled' : ''}
+                    ${buttonConfig.disabled ? 'disabled' : ''}
                 >
-                    ${isFull ? 'Sold Out' : 'Book Your Seat'}
+                    ${buttonConfig.text}
                 </button>
             ` : ''}
         </div>
@@ -298,10 +320,15 @@ function openBookingModal(eventId) {
     currentEvent = eventsData.find(e => e.id === eventId);
     if (!currentEvent) return;
     
+    // Check if booking is allowed
+    if (currentEvent.bookingStatus !== 'open') {
+        alert('Booking is not available for this event at the moment.');
+        return;
+    }
+    
     const modal = document.getElementById('bookingModal');
     const modalBody = document.getElementById('modalBody');
     
-    const availableSeats = currentEvent.totalSeats - currentEvent.bookedSeats;
     const amount = currentEvent.ticketPrice;
     
     // Generate UPI payment link
@@ -345,8 +372,8 @@ function openBookingModal(eventId) {
                 
                 <div class="form-group">
                     <label for="tickets">Number of Tickets *</label>
-                    <input type="number" id="tickets" name="tickets" min="1" max="${Math.min(availableSeats, 10)}" value="1" required onchange="updateTotalAmount()">
-                    <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Maximum ${Math.min(availableSeats, 10)} tickets per booking</p>
+                    <input type="number" id="tickets" name="tickets" min="1" max="10" value="1" required onchange="updateTotalAmount()">
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Maximum 10 tickets per booking</p>
                 </div>
                 
                 <div class="form-group">
@@ -431,13 +458,6 @@ function submitBooking(e) {
         totalAmount: currentEvent.ticketPrice * parseInt(document.getElementById('tickets').value)
     };
     
-    // Check if seats are still available
-    const availableSeats = currentEvent.totalSeats - currentEvent.bookedSeats;
-    if (formData.tickets > availableSeats) {
-        alert(`Sorry, only ${availableSeats} seats are available.`);
-        return;
-    }
-    
     // Show loading state
     const submitButton = document.querySelector('#bookingForm button[type="submit"]');
     const originalButtonText = submitButton.textContent;
@@ -451,22 +471,14 @@ function submitBooking(e) {
             // Save booking to localStorage (as backup)
             saveBooking(formData);
             
-            // Update booked seats
-            currentEvent.bookedSeats += formData.tickets;
-            
             // Show success message
             showSuccessMessage(formData);
-            
-            // Refresh events display
-            displayEvents();
         })
         .catch((error) => {
             console.error('Error saving to Google Sheets:', error);
             // Still save locally even if Google Sheets fails
             saveBooking(formData);
-            currentEvent.bookedSeats += formData.tickets;
             showSuccessMessage(formData);
-            displayEvents();
         })
         .finally(() => {
             submitButton.textContent = originalButtonText;
