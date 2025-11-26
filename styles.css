@@ -50,6 +50,13 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.nav-brand:hover {
+    opacity: 0.8;
 }
 
 .nav-logo {
@@ -973,19 +980,30 @@ body {
 }
 
 .close-modal {
-    color: var(--burgundy);
+    color: var(--gold-light);
     position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 35px;
+    right: 15px;
+    top: 15px;
+    font-size: 40px;
     font-weight: bold;
     cursor: pointer;
-    z-index: 1;
-    transition: color 0.3s;
+    z-index: 10;
+    transition: all 0.3s;
+    background: rgba(0, 0, 0, 0.2);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
 }
 
 .close-modal:hover {
-    color: var(--gold);
+    color: white;
+    background: rgba(0, 0, 0, 0.4);
+    transform: rotate(90deg);
 }
 
 .modal-header {
